@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock title %}
+
+
+
+{% block content %}
+
+  <div class="col-md-8 mt-3">
+  	  <div class="jumbotron" align="center">
+          <h2 class="text-center">Dashboard Page For {{user.username}}</h2>
+          <img height="150" width="150" class="img-thumbnail" src="{{user.profile.image.url}}" alt="">
+        </div>
+
+
+
+  </div>
+
+  <div class="col-md-4">
+  		{% include 'partials/_sidebar.html' %}
+  	</div>
+
+{% endblock content %}
+
+

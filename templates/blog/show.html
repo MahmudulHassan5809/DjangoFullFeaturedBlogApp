@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+   {{post.title}}
+{% endblock title %}
+
+
+{% block content %}
+
+  	<div class="col-md-8 mt-3">
+  		 <img class="rounded-circle" style="width: 5rem;"  src="{{user.profile.image.url}}">
+  		<div class="card">
+
+		  <div class="card-body">
+		    <h5 class="card-title">{{post.title}}</h5>
+		    <p class="card-text">{{post.content}}</p>
+		    {% if user.id == post.author_id %}
+
+                <a href="{% url "blog:editBlog" post.id %}" class="btn btn-info float-left">Edit</a>
+			    <span class="float-right">
+			    	<form action="{% url "blog:deleteBlog" post.id %}" method="post">
+					    {% csrf_token %}
+					    <input type="hidden" name="_method" value="delete">
+					    <input class="btn btn-danger" type="submit" value="Delete">
+					</form>
+			    </span>
+
+		    {% endif %}
+		  </div>
+		</div>
+  	</div>
+
+  	<div class="col-md-4">
+  		{% include 'partials/_sidebar.html' %}
+  	</div>
+
+{% endblock content %}
+

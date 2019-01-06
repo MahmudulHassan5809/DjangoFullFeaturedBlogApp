@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url "blog:home" %}">Blog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "blog:home" %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url "blog:blog_about" %}">About</a>
+      </li>
+
+
+      {% if user.is_authenticated %}
+        <li class="nav-item mr-3">
+          <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+          <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url "users:profile" user.id %}">Profile</a>
+          </li>
+           <form  method="post" id="logout" action="{% url "users:logout" %}">
+              {% csrf_token %}
+              <input type="hidden">
+          </form>
+       </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="{% url "users:dashboard" %}">Dashboard</a>
+       </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="{% url "blog:createBlog" %}">Create Post</a>
+       </li>
+      {% else %}
+           <li class="nav-item">
+            <a class="nav-link" href="{% url "users:register" %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "users:login" %}">Login</a>
+          </li>
+      {% endif %}
+
+
+
+
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+   Create Post
+{% endblock title %}
+
+
+{% block content %}
+
+  	<div class="col-md-8 mt-3">
+  		<h3>Create Post</h3>
+		<form action="{% url "blog:createBlog" %}" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label>Title</label>
+				<input type="text" name="title"  class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Content</label>
+				<textarea name="content"  cols="30" rows="10" class="form-control">
+
+				</textarea>
+			</div>
+
+			<div class="group">
+				<input type="submit" value="Save" class="btn btn-dark btn-block">
+			</div>
+		</form>
+  	</div>
+
+  	<div class="col-md-4">
+  		{% include 'partials/_sidebar.html' %}
+  	</div>
+
+{% endblock content %}
+
+
+
